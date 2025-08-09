@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>🛡️ Defesa Digital</title>
+  <link rel="stylesheet" href="jogo.css">
+</head>
+<body>
+
+<div id="info">
+  Tempo: <span id="tempo">0</span>s | 
+  Pontos: <span id="pontos">0</span> | 
+  Vidas: <span id="vidas" class="vida">❤️❤️❤️</span>
+</div>
+
+<div id="inicio" class="tela">
+  <h1>🛡️ DEFESA DIGITAL 🖥️</h1>
+  <p>Use as setas para mover. Pressione ESPAÇO para escanear e eliminar ameaças.</p>
+  <p>Colete power-ups: ⚡ (velocidade), 🛡️ (vida), 💣 (ataque amplo).</p>
+  <button onclick="comecarJogo()">INICIAR PROTEÇÃO</button>
+</div>
+
+<div id="fim" class="tela" style="display:none">
+  <h1>💥 SISTEMA INFECTADO 💥</h1>
+  <p>Seu sistema foi comprometido após <span id="tempoFinal">0</span> segundos.</p>
+  <p>Pontos de segurança: <span id="pontosFinais">0</span></p>
+  <p>Eliminou <span id="eliminadosFinais">0</span> vírus digitais.</p>
+  <button onclick="reiniciar()">Tentar Novamente</button>
+</div>
+
+<div id="vitoria" class="tela" style="display:none">
+  <h1>🎉 SISTEMA LIMPO! 🎉</h1>
+  <p>✅ Todas as ameaças foram eliminadas!</p>
+  <p>Você salvou o sistema em <span id="tempoVitoria">0</span> segundos.</p>
+  <p>Pontos de segurança: <span id="pontosVitoria">0</span></p>
+  <button onclick="reiniciar()">Jogar Novamente</button>
+</div>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script src="jogo.js"></script>
+</body>
+</html>
