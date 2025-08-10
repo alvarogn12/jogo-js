@@ -19,7 +19,6 @@ const inicioTela = document.getElementById('inicio');
 const fimTela = document.getElementById('fim');
 const vitoriaTela = document.getElementById('vitoria');
 
-// === IMAGENS SVG INLINE (sem base64) ===
 function criarImagem(svg) {
   const img = new Image();
   const svgData = encodeURIComponent(svg);
