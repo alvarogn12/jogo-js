@@ -1,0 +1,36 @@
+| Parte    | Elemento / Função          | Objetivo                                         | Como funciona                                        | Observações                                 |
+| -------- | -------------------------- | ------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------- |
+| **HTML** | `<div id="info">`          | Exibe informações do jogo (tempo, pontos, vidas) | Atualizado dinamicamente pelo JS                     | HUD fixo no canto                           |
+| **HTML** | `<div id="inicio">`        | Tela inicial do jogo                             | Mostra instruções e botão **"INICIAR PROTEÇÃO"**     | Some quando `comecarJogo()` é chamado       |
+| **HTML** | `<div id="fim">`           | Tela de fim (derrota)                            | Exibe estatísticas finais e botão "Tentar novamente" | Mostrado quando vidas = 0                   |
+| **HTML** | `<div id="vitoria">`       | Tela de vitória                                  | Mostra pontos e tempo ao vencer                      | Mostrado quando todos vírus eliminados      |
+| **HTML** | `<canvas id="gameCanvas">` | Área principal do jogo                           | Onde são desenhados jogador, vírus, partículas, etc. | Controlado pelo `ctx` (contexto 2D)         |
+| **CSS**  | `body {}`                  | Estilo geral da página                           | Fundo preto, fonte branca, sem rolagem               | Mantém estética de “sistema hacker”         |
+| **CSS**  | `canvas {}`                | Estilo do campo de jogo                          | Centralizado, borda cinza e arredondada              | Destaque para a tela de ação                |
+| **CSS**  | `#info {}`                 | Caixa de HUD do jogador                          | Fundo semitransparente, canto superior esquerdo      | Mostra tempo, pontos e vidas                |
+| **CSS**  | `.tela {}`                 | Estilo das telas (início, fim, vitória)          | Tela preta semitransparente cobrindo tudo            | Texto centralizado                          |
+| **CSS**  | `.tela h1 {}`              | Estilo dos títulos das telas                     | Grande, vermelho, com brilho (`text-shadow`)         | Efeito de alerta                            |
+| **CSS**  | `button {}`                | Estilo dos botões                                | Verde, arredondado, cresce ao passar o mouse         | Destaque de ação                            |
+| **CSS**  | `.vida {}`                 | Estilo dos corações (vidas)                      | Vermelhos e maiores que o texto normal               | Dinâmico, controlado por `atualizarVidas()` |
+| **JS**   | `criarImagem()`            | Cria imagens a partir de SVG                     | Usado para jogador e vírus                           | Mantém gráficos leves e vetoriais           |
+| **JS**   | `criarPowerUp()`           | Gera power-ups aleatórios                        | Chance de 2% por frame                               | Tipos: 🛡️, ⚡, 💣                           |
+| **JS**   | `aplicarPowerUp()`         | Ativa efeito do power-up                         | Vida extra, velocidade temporária, ataque forte      | Controla buffs                              |
+| **JS**   | `colisaoPowerUps()`        | Detecta coleta de power-up                       | Checa distância entre jogador e item                 | Remove da tela ao coletar                   |
+| **JS**   | `escanear()`               | Ataque especial do jogador                       | Cria círculo que elimina vírus próximos              | Base do combate                             |
+| **JS**   | `criarExplosao()`          | Efeito visual ao eliminar vírus                  | Cria partículas que se espalham                      | Feedback visual                             |
+| **JS**   | `atualizarParticulas()`    | Atualiza posição/vida das partículas             | Remove quando `vida <= 0`                            | Anima explosões                             |
+| **JS**   | `desenharParticulas()`     | Renderiza partículas                             | Bolinhas coloridas que desaparecem aos poucos        | Usa `ctx.globalAlpha`                       |
+| **JS**   | `atualizarProjetil()`      | Controla tempo do ataque                         | Diminui `duracao` até remover                        | Evita ataques infinitos                     |
+| **JS**   | `desenharAtaque()`         | Mostra círculo de ataque                         | Azul translúcido com borda ciano                     | O "scanner" do sistema                      |
+| **JS**   | `moverJogador()`           | Move jogador                                     | Usa setas do teclado                                 | Inclui limites da tela                      |
+| **JS**   | `criarVirus()`             | Cria vírus novos                                 | Comum, rápido ou seguidor                            | Cada tipo tem cor e pontos                  |
+| **JS**   | `moverVirusDigital()`      | Move vírus                                       | Aleatório ou seguindo jogador                        | Diferença entre tipos                       |
+| **JS**   | `detectarInfeccao()`       | Detecta colisão vírus ↔ jogador                  | Se colidir, perde vida                               | Inicia invencibilidade temporária           |
+| **JS**   | `atualizarVidas()`         | Atualiza corações na HUD                         | Repete "❤️" conforme vidas                           | Usa `textContent`                           |
+| **JS**   | `verificarVitoria()`       | Checa se não restam vírus                        | Se acabar, mostra tela de vitória                    | Calcula pontos e tempo                      |
+| **JS**   | `desenhar()`               | Renderiza tudo no canvas                         | Jogador, vírus, ataques, partículas, fundo           | Usa `ctx`                                   |
+| **JS**   | `gameLoop()`               | Loop principal do jogo                           | Chama funções de movimento e desenho                 | Usa `requestAnimationFrame`                 |
+| **JS**   | `contarTempo()`            | Cronômetro do jogo                               | +1s a cada segundo                                   | A cada 3s cria novo vírus                   |
+| **JS**   | `sistemaComprometido()`    | Finaliza jogo (derrota)                          | Mostra tela de fim                                   | Exibe estatísticas finais                   |
+| **JS**   | `comecarJogo()`            | Inicia/reinicia partida                          | Reseta variáveis e cria vírus iniciais               | Chamado pelo botão "INICIAR PROTEÇÃO"       |
+| **JS**   | `reiniciar()`              | Reinicia jogo após derrota/vitória               | Chama `comecarJogo()`                                | Usado nos botões das telas                  |
